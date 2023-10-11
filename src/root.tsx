@@ -5,8 +5,10 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-
+import { config } from './services/translates/speak-config';
 import "./global.css";
+import { QwikSpeakProvider } from "qwik-speak";
+import { translationFn } from './services/translates/speak-functions';
 
 export default component$(() => {
   /**
@@ -17,16 +19,19 @@ export default component$(() => {
    */
 
   return (
-    <QwikCityProvider>
-      <head>
-        <meta charSet="utf-8" />
-        <link rel="manifest" href="/manifest.json" />
-        <RouterHead />
-        <ServiceWorkerRegister />
-      </head>
-      <body lang="en">
-        <RouterOutlet />
-      </body>
-    </QwikCityProvider>
+  
+      <QwikCityProvider>
+          <QwikSpeakProvider config={config} translationFn={translationFn}>
+        <head>
+          <meta charSet="utf-8" />
+          <link rel="manifest" href="/manifest.json" />
+          <RouterHead />
+          <ServiceWorkerRegister />
+        </head>
+        <body lang="en" class="bg-bg-main">
+          <RouterOutlet />
+        </body>
+        </QwikSpeakProvider>
+      </QwikCityProvider>
   );
 });

@@ -10,8 +10,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  padding: 0;
-  margin: 0;
-  line-height: inherit;
+
+html{
+  @apply text-main
 }
